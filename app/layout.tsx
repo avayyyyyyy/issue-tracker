@@ -1,3 +1,5 @@
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -20,17 +22,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NavBar />
-            {children}
-          </ThemeProvider>
-        </AuthProvider>
+        <Theme>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NavBar />
+              {children}
+            </ThemeProvider>
+          </AuthProvider>
+        </Theme>
       </body>
     </html>
   );
