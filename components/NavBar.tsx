@@ -18,7 +18,6 @@ import { usePathname } from "next/navigation";
 const NavBar = () => {
   const session = useSession();
   const path = usePathname();
-  console.log(path);
 
   return (
     <>

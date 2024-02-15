@@ -19,10 +19,10 @@ export default function DropdownMenuRadioGroupDemo() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger className="dark:bg-black" asChild>
         <Button variant="outline">All</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 dark:bg-black">
         <DropdownMenuLabel>All</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
