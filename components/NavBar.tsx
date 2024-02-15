@@ -44,7 +44,7 @@ const NavBar = () => {
                   path == "/dashboard/issues" ? "text-primary/60" : null
                 }
                 }`}
-                href={"/dashboard/issues"}
+                href={"/issue"}
               >
                 Issue
               </Link>
