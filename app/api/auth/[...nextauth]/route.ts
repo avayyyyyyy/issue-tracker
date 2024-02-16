@@ -1,10 +1,9 @@
-import NextAuth from "next-auth"
+import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "@/prisma/client"
-
-
+import { getSession } from "next-auth/react"
  
 const handler = NextAuth({
     adapter: PrismaAdapter(prisma)
@@ -20,7 +19,13 @@ const handler = NextAuth({
         })
     ],
     secret: process.env.NEXTAUTH_SECRET,
+    session:{
+        strategy:"jwt"
+    }
 })
 
 
 export { handler as GET, handler as POST }
+export const getAuthSession = () => {
+  return getSession(handler);
+};

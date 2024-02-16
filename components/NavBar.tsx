@@ -20,10 +20,13 @@ const NavBar = () => {
   const path = usePathname();
 
   return (
-    <>
+    <div>
       <div className="flex py-5 border-b-2 items-center justify-between px-4 lg:px-10">
         <div>
-          <Link href={"/"} className=" text-lg">
+          <Link
+            href={"/"}
+            className="font-semibold p-2 bg-primary text-secondary px-3 text-lg"
+          >
             Issue Tracker
           </Link>
         </div>
@@ -65,7 +68,7 @@ const NavBar = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuLabel
                     onClick={() => signOut()}
-                    className="text-sm text-primary text-red-600 hover:text-red-400 cursor-pointer"
+                    className="text-sm hover:bg-red-600 hover:text-red-100 text-primary text-red-600 cursor-pointer"
                   >
                     Logout
                   </DropdownMenuLabel>
@@ -77,7 +80,7 @@ const NavBar = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

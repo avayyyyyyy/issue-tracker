@@ -1,8 +1,14 @@
+"use client";
+import Page from "@/app/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import React from "react";
+
+type Inputs = {
+  example: string;
+  exampleRequired: string;
+};
 
 const page = () => {
   return (
@@ -10,20 +16,21 @@ const page = () => {
       <h1 className="font-bold text-2xl lg:text-4xl text-center">
         New Issue 👇🏻
       </h1>
-      <Label htmlFor="title">Title:</Label>
-      <Input
-        className="dark:bg-black/45"
-        type="title"
-        name="title"
-        placeholder="Title "
-      />
-      <Label htmlFor="description">Description:</Label>
-      <Textarea
-        className="dark:bg-black/45"
-        rows={15}
-        placeholder="Type your message here."
-      />
-      <Button type="submit">Submit</Button>
+      <form action="/api/issue">
+        <Label htmlFor="title">Title:</Label>
+        <Input
+          className="dark:bg-black/45"
+          type="title"
+          name="title"
+          placeholder="Title "
+        />
+        <Label htmlFor="description">Description:</Label>
+        <Textarea
+          className="dark:bg-black/45"
+          placeholder="Type your message here."
+        />
+        <Button type="submit">Submit</Button>
+      </form>
     </div>
   );
 };

@@ -1,13 +1,20 @@
+"use client";
 import React from "react";
 import prisma from "@/prisma/client";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { FilePenLine, FileX } from "lucide-react";
 import AssignedToUser from "@/components/AssignedToUsers";
+import Link from "next/link";
+import { revalidatePath } from "next/cache";
 
 type props = {
-  params: { id: String };
+  params: { id: string };
 };
+
+interface User {
+  name: string | null;
+}
 
 const page = async ({ params: { id } }: props) => {
   const issue = await prisma.issue.findUnique({
@@ -16,7 +23,7 @@ const page = async ({ params: { id } }: props) => {
     },
   });
 
-  const Users = await prisma.user.findMany({
+  const Users: User[] = await prisma.user.findMany({
     select: {
       name: true,
     },
@@ -54,13 +61,17 @@ const page = async ({ params: { id } }: props) => {
         <div>
           <AssignedToUser users={Users} id={issue} />
         </div>
-        <Button variant={"outline"} className="flex gap-x-2">
-          <FilePenLine size={18} /> Edit Issue
+        <Button variant={"outline"}>
+          <Link className="flex gap-x-2" href={`/issue/edit/${id}`}>
+            <FilePenLine size={18} /> Edit Issue
+          </Link>
         </Button>
-        <Button variant={"destructive"} className="flex gap-x-2">
+        <Button variant={"destructive"}>
           {" "}
-          <FileX size={18} />
-          Delete Issue
+          <Link className="flex gap-x-2" href={`/api/delete/${id}`}>
+            <FileX size={18} />
+            Delete Issue
+          </Link>
         </Button>
       </div>
     </div>

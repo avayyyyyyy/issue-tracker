@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import IssueTypes from "@/components/IssueTypes";
 import React from "react";
+import prisma from "@/prisma/client";
 import {
   Table,
   TableBody,
@@ -16,7 +17,7 @@ const page = async () => {
   return (
     <div className="w-[90%] m-auto flex flex-col gap-y-6">
       <div className="w-full mt-4 flex justify-between items-center m-auto">
-        <IssueTypes /> 
+        <IssueTypes />
         <Button>
           <Link href={"/issue/new"}>New Issue</Link>
         </Button>

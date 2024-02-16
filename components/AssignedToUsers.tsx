@@ -14,7 +14,7 @@ import {
 import { ChevronDown } from "lucide-react";
 
 type props = {
-  users: { name: string };
+  users: { name: string }[];
   id: { id: number };
 };
 
@@ -31,7 +31,7 @@ export default function DropdownMenuRadioGroupDemo({ users, id }: props) {
       <DropdownMenuContent className="w-56 dark:bg-black">
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          {users.map((e, i) => {
+          {users.map((e: { name: string }, i: number) => {
             return (
               <DropdownMenuRadioItem key={i} value={e.name}>
                 {e.name}
