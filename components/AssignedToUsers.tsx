@@ -13,12 +13,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 
-export default function DropdownMenuRadioGroupDemo() {
-  const [position, setPosition] = React.useState("All");
+type props = {
+  users: { name: string };
+  id: { id: number };
+};
+
+export default function DropdownMenuRadioGroupDemo({ users, id }: props) {
+  const [position, setPosition] = React.useState("Unassigned");
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="dark:bg-black" asChild>
+      <DropdownMenuTrigger className="dark:bg-black w-full" asChild>
         <Button variant="outline">
           {position} <ChevronDown />
         </Button>
@@ -26,11 +31,13 @@ export default function DropdownMenuRadioGroupDemo() {
       <DropdownMenuContent className="w-56 dark:bg-black">
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="Open">Open</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="Pending">Pending</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="Completed">
-            Completed
-          </DropdownMenuRadioItem>
+          {users.map((e, i) => {
+            return (
+              <DropdownMenuRadioItem key={i} value={e.name}>
+                {e.name}
+              </DropdownMenuRadioItem>
+            );
+          })}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

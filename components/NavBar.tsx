@@ -39,9 +39,7 @@ const NavBar = () => {
                 Dashboard
               </Link>
               <Link
-                className={`${
-                  path == "/dashboard/issues" ? "text-primary/60" : null
-                }
+                className={`${path == "/issue" ? "text-primary/60" : null}
                 }`}
                 href={"/issue"}
               >

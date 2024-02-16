@@ -16,7 +16,7 @@ const page = async () => {
   return (
     <div className="w-[90%] m-auto flex flex-col gap-y-6">
       <div className="w-full mt-4 flex justify-between items-center m-auto">
-        <IssueTypes />
+        <IssueTypes /> 
         <Button>
           <Link href={"/issue/new"}>New Issue</Link>
         </Button>
