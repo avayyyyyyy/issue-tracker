@@ -3,6 +3,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
+import { Options } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 const page = async ({ params: { id } }: { params: { id: string } }) => {
   const issue = await prisma.issue.findUnique({
@@ -10,6 +13,11 @@ const page = async ({ params: { id } }: { params: { id: string } }) => {
       id: parseInt(id),
     },
   });
+
+  const session = await getServerSession(Options);
+  if (!session?.user) {
+    return redirect("/");
+  }
 
   return (
     <div className="w-[90%] lg:max-w-xl mt-20  gap-y-4 flex flex-col m-auto">

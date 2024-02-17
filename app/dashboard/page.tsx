@@ -1,4 +1,7 @@
 import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
+import { Options } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const tasks = await prisma?.issue.findMany({
@@ -6,6 +9,11 @@ export default async function Home() {
       status: true,
     },
   });
+
+  const session = await getServerSession(Options);
+  if (!session?.user) {
+    return redirect("/");
+  }
 
   const open = tasks?.filter((e) => e.status === "open");
   const completed = tasks?.filter((e) => e.status === "completed");

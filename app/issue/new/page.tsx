@@ -1,16 +1,23 @@
-"use client";
+import { Options } from "@/app/api/auth/[...nextauth]/route";
 import Page from "@/app/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 type Inputs = {
   example: string;
   exampleRequired: string;
 };
 
-const page = () => {
+const page = async () => {
+  const session = await getServerSession(Options);
+  if (!session?.user) {
+    return redirect("/");
+  }
+
   return (
     <div className="w-[90%] lg:max-w-xl mt-20  gap-y-4 flex flex-col m-auto">
       <h1 className="font-bold text-2xl lg:text-4xl text-center">

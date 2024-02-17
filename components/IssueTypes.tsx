@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
@@ -23,7 +24,8 @@ export default function DropdownMenuRadioGroupDemo() {
           {position} <ChevronDown />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 dark:bg-black">
+      <DropdownMenuContent className="w-56 dark:bg-black ml-8">
+        <DropdownMenuLabel className="ml-5">Status</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
           <DropdownMenuRadioItem value="Open">Open</DropdownMenuRadioItem>

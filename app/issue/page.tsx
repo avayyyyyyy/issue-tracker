@@ -11,15 +11,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getServerSession } from "next-auth";
+import { Options } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 const page = async () => {
+  const session = await getServerSession(Options);
+  if (!session?.user) {
+    return redirect("/");
+  }
+
   const data = await prisma?.issue.findMany();
   return (
     <div className="w-[90%] m-auto flex flex-col gap-y-6">
       <div className="w-full mt-4 flex justify-between items-center m-auto">
         <IssueTypes />
         <Button>
-          <Link href={"/issue/new"}>New Issue</Link>
+          <Link href="/issue/new">New Issue</Link>
         </Button>
       </div>
       <Table className=" border rounded-lg lg:mx-0">

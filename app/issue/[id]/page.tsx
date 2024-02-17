@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import prisma from "@/prisma/client";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { FilePenLine, FileX } from "lucide-react";
 import AssignedToUser from "@/components/AssignedToUsers";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
+import { getServerSession } from "next-auth";
+import { Options } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 type props = {
   params: { id: string };
@@ -22,6 +23,11 @@ const page = async ({ params: { id } }: props) => {
       id: parseInt(id),
     },
   });
+
+  const session = await getServerSession(Options);
+  if (!session?.user) {
+    return redirect("/");
+  }
 
   const Users: User[] = await prisma.user.findMany({
     select: {

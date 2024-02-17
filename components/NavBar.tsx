@@ -61,14 +61,14 @@ const NavBar = () => {
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="pr-16 pt-3 gap-y-4 bg-primary-foreground space-y-2 p-3 rounded-lg cursor-pointer">
-                  <DropdownMenuLabel className="text-sm text-primary cursor-default">
+                <DropdownMenuContent className=" w-fit pt-3 mr-8 gap-y-4 bg-primary-foreground space-y-2 p-3 rounded-lg ">
+                  <DropdownMenuLabel className="text-sm text-primary select-none border-b-2 border-primary/10 pb-3">
                     {session.data?.user?.email}
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuLabel
                     onClick={() => signOut()}
-                    className="text-sm hover:bg-red-600 hover:text-red-100 text-primary text-red-600 cursor-pointer"
+                    className="text-sm py-1 rounded-md px-2 hover:bg-red-600 hover:text-white text-primary text-white cursor-pointer"
                   >
                     Logout
                   </DropdownMenuLabel>
