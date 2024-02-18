@@ -23,15 +23,15 @@ export async function DELETE(request: NextRequest, { params }: props) {
         },
         { status: 200 }
       );
+    } else {
+      return NextResponse.json(
+        {
+          success: false,
+          msg: "Deleted Failed",
+        },
+        { status: 400 }
+      );
     }
-
-    return NextResponse.json(
-      {
-        success: false,
-        msg: "Deleted Failed",
-      },
-      { status: 400 }
-    );
   } catch (error) {
     return NextResponse.json(
       {
