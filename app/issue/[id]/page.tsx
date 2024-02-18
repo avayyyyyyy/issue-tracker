@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { FilePenLine } from "lucide-react";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
-import { Options } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import DeleteIssueButton from "@/components/DeleteButton";
+import { Options } from "@/utils/authOptions";
 
 type props = {
   params: { id: string };

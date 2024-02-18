@@ -1,10 +1,10 @@
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
-import { Options } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Options } from "@/utils/authOptions";
 
 export default async function Home() {
   let tasks;

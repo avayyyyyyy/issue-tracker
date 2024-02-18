@@ -12,8 +12,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getServerSession } from "next-auth";
-import { Options } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { Options } from "@/utils/authOptions";
 
 const page = async () => {
   const session = await getServerSession(Options);

@@ -20,9 +20,6 @@ type Props = {
 
 const EditIssue = (props: Props) => {
   const { issue } = props;
-
-  const 
-
   return (
     <div className="w-[90%] lg:max-w-xl mt-20  gap-y-4 flex flex-col m-auto">
       <h1 className="font-bold text-2xl lg:text-4xl text-center">

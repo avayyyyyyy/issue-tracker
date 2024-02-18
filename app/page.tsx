@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
 import { getServerSession } from "next-auth";
 import React from "react";
-import { Options } from "./api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { Github, Linkedin } from "lucide-react";
 import Link from "next/link";
+import { Options } from "@/utils/authOptions";
 
 const Page = async () => {
   const session = await getServerSession(Options);
