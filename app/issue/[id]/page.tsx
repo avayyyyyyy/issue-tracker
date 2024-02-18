@@ -34,7 +34,7 @@ const page = async ({ params: { id } }: props) => {
 
   return (
     <div className="w-[90%] m-auto mt-7 flex gap-3  gap-y-6">
-      <div className="flex flex-col gap-y-4 w-[90%] ">
+      <div className="flex flex-col gap-y-4 w-[80%] ">
         <div>
           <h1 className="text-3xl font-bold">{issue?.title}</h1>
         </div>
@@ -57,12 +57,13 @@ const page = async ({ params: { id } }: props) => {
           </div>
         </div>
         <Textarea
+          className=""
           placeholder="Type your message here."
           value={issue?.description}
           disabled
         />
       </div>
-      <div className="w-[20%] p-2 m-auto gap-y-5 flex flex-col">
+      <div className="lg:w-[20%] p-2 m-auto gap-y-5 flex flex-col">
         <div className="">{issue?.createdBy?.name}</div>
 
         <Link className="flex gap-x-2" href={`/issue/edit/${id}`}>

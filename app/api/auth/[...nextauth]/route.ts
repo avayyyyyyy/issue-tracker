@@ -55,6 +55,3 @@ const handler = NextAuth(Options)
 
 
 export { handler as GET, handler as POST }
-export const getAuthSession = () => {
-  return getSession(handler);
-};
