@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     if (newIssue) {
       return NextResponse.json({ success: true }, { status: 200 });
     }
-    return NextResponse.json({ success: false, error: "Failed to create the issue" }, { status: 500 });
+    return NextResponse.json({ success: false, error: "Failed to create the issue" }, { status: 400 });
   } else {
     return NextResponse.json({ success: false, error: "Validation error", details: isValid.error }, { status: 400 });
   }
