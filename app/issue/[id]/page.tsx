@@ -2,25 +2,28 @@ import React from "react";
 import prisma from "@/prisma/client";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { FilePenLine, FileX } from "lucide-react";
-import AssignedToUser from "@/components/AssignedToUsers";
+import { FilePenLine } from "lucide-react";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { Options } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import DeleteIssueButton from "@/components/DeleteButton";
 
 type props = {
   params: { id: string };
 };
 
-interface User {
-  name: string | null;
-}
-
 const page = async ({ params: { id } }: props) => {
   const issue = await prisma.issue.findUnique({
     where: {
       id: parseInt(id),
+    },
+    select: {
+      createdBy: true,
+      createdAt: true,
+      title: true,
+      description: true,
+      status: true,
     },
   });
 
@@ -28,12 +31,6 @@ const page = async ({ params: { id } }: props) => {
   if (!session?.user) {
     return redirect("/");
   }
-
-  const Users: User[] = await prisma.user.findMany({
-    select: {
-      name: true,
-    },
-  });
 
   return (
     <div className="w-[90%] m-auto mt-7 flex gap-3  gap-y-6">
@@ -55,7 +52,9 @@ const page = async ({ params: { id } }: props) => {
           >
             {issue?.status}
           </div>
-          <div>{issue?.createdAt.toDateString()}</div>
+          <div>
+            <h1>{issue?.createdAt.toDateString()}</h1>
+          </div>
         </div>
         <Textarea
           placeholder="Type your message here."
@@ -64,21 +63,14 @@ const page = async ({ params: { id } }: props) => {
         />
       </div>
       <div className="w-[20%] p-2 m-auto gap-y-5 flex flex-col">
-        <div>
-          <AssignedToUser users={Users} id={issue} />
-        </div>
-        <Button variant={"outline"}>
-          <Link className="flex gap-x-2" href={`/issue/edit/${id}`}>
+        <div className="">{issue?.createdBy?.name}</div>
+
+        <Link className="flex gap-x-2" href={`/issue/edit/${id}`}>
+          <Button variant={"outline"} className="w-full">
             <FilePenLine size={18} /> Edit Issue
-          </Link>
-        </Button>
-        <Button variant={"destructive"}>
-          {" "}
-          <Link className="flex gap-x-2" href={`/api/delete/${id}`}>
-            <FileX size={18} />
-            Delete Issue
-          </Link>
-        </Button>
+          </Button>
+        </Link>
+        <DeleteIssueButton issueId={parseInt(id)} />
       </div>
     </div>
   );

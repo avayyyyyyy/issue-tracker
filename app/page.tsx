@@ -30,20 +30,23 @@ const Page = async () => {
               resolving tasks.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button className="block w-fit rounded px-12 py-3 text-sm font-medium  shadow focus:outline-none focus:ring sm:w-auto">
+              <Link
+                href={"/api/auth/signin"}
+                className="block w-fit rounded px-12 py-3 text-sm bg-primary text-primary-foreground font-medium  shadow focus:outline-none focus:ring sm:w-auto"
+              >
                 Get Started
-              </Button>
+              </Link>
             </div>
             <div className="flex justify-center mt-3 text-lg space-x-3">
               <Link
-                className="p-2 rounded-full bg-primary-foreground"
+                className="p-2 rounded-full bg-primary text-primary-foreground "
                 target="_blank"
                 href={"https://github.com/avayyyyyyy/"}
               >
                 <Github />
               </Link>
               <Link
-                className="p-2 rounded-full bg-primary-foreground"
+                className="p-2 rounded-full bg-primary text-primary-foreground "
                 target="_blank"
                 href={"https://www.linkedin.com/in/shubhcodes/"}
               >

@@ -10,7 +10,6 @@ const schema = z.object({
 export async function POST(request: NextRequest){
    try {
      const body = await request.json()
-     console.log(body)
     const isValid = schema.safeParse(body)
     if(!isValid.success)return NextResponse.json({message:"Wrong Body Sent"})
     const issue = await prisma?.issue.create({
@@ -24,3 +23,4 @@ export async function POST(request: NextRequest){
     return NextResponse.json({err:error},{status:404})
    }
 }
+

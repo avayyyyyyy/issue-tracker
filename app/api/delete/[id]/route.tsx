@@ -5,30 +5,40 @@ type props = {
   params: { id: string };
 };
 
-export async function POST(request: NextRequest, { params }: props) {
-  const { id } = params;
+export async function DELETE(request: NextRequest, { params }: props) {
+  try {
+    const { id } = params;
 
-  const deleted = await prisma.issue.delete({
-    where: {
-      id: parseInt(params.id),
-    },
-  });
+    const deleted = await prisma.issue.delete({
+      where: {
+        id: parseInt(params.id),
+      },
+    });
 
-  if (deleted) {
+    if (deleted) {
+      return NextResponse.json(
+        {
+          success: true,
+          msg: "Deleted Successful",
+        },
+        { status: 200 }
+      );
+    }
+
     return NextResponse.json(
       {
-        success: true,
-        msg: "Deleted Successful",
+        success: false,
+        msg: "Deleted Failed",
       },
-      { status: 200 }
+      { status: 400 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        msg: "Deleted Failed",
+      },
+      { status: 400 }
     );
   }
-
-  return NextResponse.json(
-    {
-      success: false,
-      msg: "Deleted Failed",
-    },
-    { status: 400 }
-  );
 }
