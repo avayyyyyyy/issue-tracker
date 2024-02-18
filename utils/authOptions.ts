@@ -22,6 +22,9 @@ export const Options: NextAuthOptions = {
             email: credentials.Email,
           },
         });
+
+        console.log(user)
+
         if (!user) {
           return null;
         }

@@ -10,6 +10,7 @@ import { Status } from "@prisma/client";
 
 const page = async ({ params: { id } }: { params: { id: string } }) => {
   const UpdateIssue = async (formData: FormData) => {
+    "use server";
     const title = formData.get("title");
     const desc = formData.get("description");
     const status = formData.get("status");
