@@ -7,8 +7,9 @@ const schema = z.object({
 });
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const isValid = schema.safeParse(body);
+ try {
+   const body = await request.json();
+  const isValid = schema.safeParse(body); 
 
   if (isValid.success) {
     const newIssue = await prisma?.issue.create({
@@ -21,8 +22,8 @@ export async function POST(request: NextRequest) {
     if (newIssue) {
       return NextResponse.json({ success: true }, { status: 200 });
     }
-    return NextResponse.json({ success: false, error: "Failed to create the issue" }, { status: 400 });
-  } else {
-    return NextResponse.json({ success: false, error: "Validation error", details: isValid.error }, { status: 400 });
-  }
+  } 
+ } catch (error) {
+  return NextResponse.json({messgae:error}, {status: 400})
+ }
 }
