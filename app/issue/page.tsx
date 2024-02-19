@@ -21,7 +21,11 @@ const page = async () => {
     return redirect("/");
   }
 
-  const data = await prisma?.issue.findMany();
+  const data = await prisma?.issue.findMany({
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
   return (
     <div className="w-[90%] m-auto flex flex-col gap-y-6">
       <div className="w-full mt-4 flex justify-between items-center m-auto">
