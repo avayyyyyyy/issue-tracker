@@ -16,8 +16,5 @@ if(deleted){
     return NextResponse.json({success: true,},{status: 200})
 } else {
     null
-}
-
-
-   
+}   
 }

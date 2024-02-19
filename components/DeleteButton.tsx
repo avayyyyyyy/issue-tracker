@@ -1,6 +1,7 @@
 "use client";
 
-import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
+import { AlertDialog, Flex } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -27,7 +28,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" disabled={isDeleting}>
+          <Button variant="destructive" disabled={isDeleting}>
             Delete Issue
             {isDeleting && <Spinner />}
           </Button>
@@ -40,7 +41,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
           </AlertDialog.Description>
           <Flex mt="4" gap="3" justify="end">
             <AlertDialog.Cancel>
-              <Button variant="soft" color="gray">
+              <Button variant="secondary" color="gray">
                 Cancel
               </Button>
             </AlertDialog.Cancel>
@@ -60,8 +61,8 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
           </AlertDialog.Description>
           <Button
             color="gray"
-            variant="soft"
-            mt="2"
+            variant="secondary"
+            className="mt-2"
             onClick={() => setError(false)}
           >
             OK
