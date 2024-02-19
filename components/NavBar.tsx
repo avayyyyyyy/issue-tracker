@@ -1,5 +1,4 @@
 "use client";
-
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
@@ -32,7 +31,7 @@ const NavBar = () => {
         </div>
         <div className="space-x-4 flex items-center font-normal">
           <ToogleTheme />
-          {session.status === "loading" ? <div>Loading...</div> : null}
+
           {session.status === "authenticated" ? (
             <div className="flex  items-center gap-x-4">
               <Link
@@ -68,7 +67,7 @@ const NavBar = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuLabel
                     onClick={() => signOut()}
-                    className="text-sm py-1 rounded-md px-2 hover:bg-red-600 hover:text-primary-foreground text-primary cursor-pointer"
+                    className="text-sm py-1 rounded-md px-2 hover:bg-red-600 hover:text-primary-foreground dark:hover:text-white  text-primary cursor-pointer"
                   >
                     Logout
                   </DropdownMenuLabel>
