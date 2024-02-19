@@ -47,14 +47,28 @@ const CreateIssue = () => {
           onChange={(e) => setDesc(e.target.value)}
           placeholder="Type your message here."
         />
-        <Button
-          className="w-full mt-4"
-          type="submit"
-          onClick={(e) => createIssue(e)}
-        >
-          Submit {""}
-          {isDeleting && <Spinner />}
-        </Button>
+
+        {isDeleting ? (
+          <>
+            <Button
+              className="w-full mt-4"
+              disabled
+              type="submit"
+              onClick={(e) => createIssue(e)}
+            >
+              Submit
+              {isDeleting && <Spinner />}
+            </Button>
+          </>
+        ) : (
+          <Button
+            className="w-full mt-4"
+            type="submit"
+            onClick={(e) => createIssue(e)}
+          >
+            Submit
+          </Button>
+        )}
       </form>
     </div>
   );
